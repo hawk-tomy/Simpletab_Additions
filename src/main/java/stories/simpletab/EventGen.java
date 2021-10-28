@@ -64,7 +64,7 @@ public class EventGen {
                         } else {
                             json.put("group_name", "Error");
                         }
-                        Connections.sio.emit("tab_deletewhitelist", json);
+                        Connections.sio.emit("tabad_lp_add", json);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -100,7 +100,7 @@ public class EventGen {
                         } else {
                             json.put("group_name", "Error");
                         }
-                        Connections.sio.emit("tab_deletewhitelist", json);
+                        Connections.sio.emit("tabad_lp_remove", json);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -125,7 +125,7 @@ public class EventGen {
                             }
                             json.put("Players", member);
                         }
-                        Connections.sio.emit("tab_deletewhitelist", json);
+                        Connections.sio.emit("tabad_lp_list", json);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
