@@ -47,7 +47,7 @@ public class EventGen {
                     try {
                         System.out.println("to: " + Connections.getJString(object[0],"to") + " id: " + Connections.getJString(object[0],"id"));
                         JSONObject json = new JSONObject();
-                        json.put("to", Connections.getJString(object[0],"to")).put("id", Connections.getJString(object[0],"id"));
+                        json.put("to", Connections.getJString(object[0],"to")).put("id", Connections.getJInt(object[0],"id"));
                         //??
                         if (Connections.Get_has(object[0],"group_name")) {
                             List<String> member = new ArrayList<>();
@@ -93,7 +93,7 @@ public class EventGen {
                     try {
                         System.out.println("to: " + Connections.getJString(object[0],"to") + " id: " + Connections.getJString(object[0],"id"));
                         JSONObject json = new JSONObject();
-                        json.put("to", Connections.getJString(object[0],"to")).put("id", Connections.getJString(object[0],"id"));
+                        json.put("to", Connections.getJString(object[0],"to")).put("id", Connections.getJInt(object[0],"id"));
                         //??
                         if (Connections.Get_has(object[0],"group_name")) {
                             List<String> member = new ArrayList<>();
@@ -136,7 +136,7 @@ public class EventGen {
                     try {
                         System.out.println("to: " + Connections.getJString(object[0],"to") + " id: " + Connections.getJString(object[0],"id"));
                         JSONObject json = new JSONObject();
-                        json.put("to", Connections.getJString(object[0],"to")).put("id", Connections.getJString(object[0],"id"));
+                        json.put("to", Connections.getJString(object[0],"to")).put("id", Connections.getJInt(object[0],"id"));
                         //??
                         if (Connections.Get_has(object[0],"group_name")) {
                             List<String> member = new ArrayList<>();
@@ -172,7 +172,7 @@ public class EventGen {
                     try {
                         System.out.println("to: " + Connections.getJString(object[0],"to") + " id: " + Connections.getJString(object[0],"id"));
                         JSONObject json = new JSONObject();
-                        json.put("to", Connections.getJString(object[0],"to")).put("id", Connections.getJString(object[0],"id"));
+                        json.put("to", Connections.getJString(object[0],"to")).put("id", Connections.getJInt(object[0],"id"));
                         //??
                         String name = Connections.getJString(object[0],"Player");
                         Integer second = Connections.getJInt(object[0],"time");
@@ -197,7 +197,7 @@ public class EventGen {
                     try {
                         System.out.println("to: " + Connections.getJString(object[0],"to") + " id: " + Connections.getJString(object[0],"id"));
                         JSONObject json = new JSONObject();
-                        json.put("to", Connections.getJString(object[0],"to")).put("id", Connections.getJString(object[0],"id"));
+                        json.put("to", Connections.getJString(object[0],"to")).put("id", Connections.getJInt(object[0],"id"));
                         //??
                         String name = Connections.getJString(object[0],"Player");
                         Integer second = Connections.getJInt(object[0],"time");
@@ -222,7 +222,7 @@ public class EventGen {
                     try {
                         System.out.println("to: " + Connections.getJString(object[0],"to") + " id: " + Connections.getJString(object[0],"id"));
                         JSONObject json = new JSONObject();
-                        json.put("to", Connections.getJString(object[0],"to")).put("id", Connections.getJString(object[0],"id"));
+                        json.put("to", Connections.getJString(object[0],"to")).put("id", Connections.getJInt(object[0],"id"));
                         //??
                         String name = Connections.getJString(object[0],"Player");
                         Integer type = Connections.getJInt(object[0],"runk");
@@ -246,7 +246,7 @@ public class EventGen {
                     try {
                         System.out.println("to: " + Connections.getJString(object[0],"to") + " id: " + Connections.getJString(object[0],"id"));
                         JSONObject json = new JSONObject();
-                        json.put("to", Connections.getJString(object[0],"to")).put("id", Connections.getJString(object[0],"id"));
+                        json.put("to", Connections.getJString(object[0],"to")).put("id", Connections.getJInt(object[0],"id"));
                         //??
                         String name = Connections.getJString(object[0],"Player");
                         if(name != ""){
@@ -269,7 +269,7 @@ public class EventGen {
                     try {
                         System.out.println("to: " + Connections.getJString(object[0],"to") + " id: " + Connections.getJString(object[0],"id"));
                         JSONObject json = new JSONObject();
-                        json.put("to", Connections.getJString(object[0],"to")).put("id", Connections.getJString(object[0],"id"));
+                        json.put("to", Connections.getJString(object[0],"to")).put("id", Connections.getJInt(object[0],"id"));
                         //??
                         List<PersonalData> datas = new ArrayList<>();
                         for(PersonalData data : VMSystemAPI.getAllPersonalData().values())datas.add(data);
