@@ -1,5 +1,5 @@
 name: SimpletabAdditions
-version: 1.0.0Dev
+version: 1.0.1
 main: stories.simpletab.SimpletabAdditions
 api-version: 1.16
-depend: [SimpleTab , LuckPerms]
+depend: [SimpleTab , LuckPerms , VMPlugin]

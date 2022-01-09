@@ -4,7 +4,8 @@ import VMPlugin.API.VMSystemAPI;
 import VMPlugin.Data.PersonalData;
 import VMPlugin.Ranks.Rank;
 import com.google.gson.Gson;
-import kura.tab.Connections;
+import com.google.gson.JsonObject;
+import kura.tab.communication.Connections;
 import kura.tab.libs.socket.emitter.Emitter;
 import net.luckperms.api.LuckPermsProvider;
 import net.luckperms.api.model.data.DataMutateResult;
@@ -22,8 +23,12 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 
-
 public class EventGen {
+
+    public static List<k> adds = new ArrayList<>();
+    public static List<k> removes = new ArrayList<>();
+    public static List<k> deletes = new ArrayList<>();
+
     public static void EventGeneratorRunner(){
         new BukkitRunnable(){
             Long Time_Stamp = System.currentTimeMillis();
@@ -32,7 +37,7 @@ public class EventGen {
                 if(Time_Stamp != Connections.IOTMStamp){
                     Time_Stamp = Connections.IOTMStamp;
                     EventGenerator();
-                    System.out.println("???????");
+                    System.out.println("Simpletab_Ad_Generate");
                 }
             }
         }.runTaskTimer(SimpletabAdditions.plugin,100,100);
@@ -180,7 +185,7 @@ public class EventGen {
                         if(name != ""){
                             Rank rank = Rank.VIP;
                             if(type == 1)rank = Rank.MVP;
-                            VMSystemAPI.addRank(UUID.fromString(name),rank,second);
+                            adds.add(new k(UUID.fromString(name),rank,second));
                             json.put("Player",name);
                         }
 
@@ -205,7 +210,7 @@ public class EventGen {
                         if(name != ""){
                             Rank rank = Rank.VIP;
                             if(type == 1)rank = Rank.MVP;
-                            VMSystemAPI.removeRank(UUID.fromString(name),rank,second);
+                            removes.add(new k(UUID.fromString(name),rank,second));
                             json.put("Player",name);
                         }
 
@@ -229,7 +234,7 @@ public class EventGen {
                         if(name != ""){
                             Rank rank = Rank.VIP;
                             if(type == 1)rank = Rank.MVP;
-                            VMSystemAPI.deleteRank(UUID.fromString(name),rank);
+                            deletes.add(new k(UUID.fromString(name),rank,null));
                             json.put("Player",name);
                         }
 
@@ -252,7 +257,7 @@ public class EventGen {
                         if(name != ""){
                             if(VMSystemAPI.getPersonalData(UUID.fromString(name)) != null) {
                                 Gson gson = new Gson();
-                                json.put("data",VMSystemAPI.getPersonalData(UUID.fromString(name)));
+                                json.put("data",gson.toJson(VMSystemAPI.getPersonalData(UUID.fromString(name))));
                                 json.put("Player", name);
                             }
                         }
@@ -272,8 +277,9 @@ public class EventGen {
                         json.put("to", Connections.getJString(object[0],"to")).put("id", Connections.getJInt(object[0],"id"));
                         //??
                         List<PersonalData> datas = new ArrayList<>();
+                        Gson gson = new Gson();
                         for(PersonalData data : VMSystemAPI.getAllPersonalData().values())datas.add(data);
-                        json.put("data",datas);
+                        json.put("data",gson.toJson(datas));
 
                         Connections.sendJson("tabad_VM_list", json.toString());
                     } catch (JSONException e) {
@@ -282,5 +288,33 @@ public class EventGen {
                 }
             });
         }
+    }
+
+    public static void run_task(){
+        new BukkitRunnable(){
+            Long Time_Stamp = System.currentTimeMillis();
+            @Override
+            public void run(){
+                if(adds.size() > 0){
+                    for( k a : adds) {
+                        VMSystemAPI.addRank(a.uuid, a.runk, a.second);
+                    }
+                    adds = new ArrayList<>();
+                }
+                if(removes.size() > 0){
+                    for( k a : removes) {
+                        VMSystemAPI.removeRank(a.uuid, a.runk, a.second);
+                    }
+                    removes = new ArrayList<>();
+                }
+
+                if(deletes.size() > 0){
+                    for( k a : deletes) {
+                        VMSystemAPI.deleteRank(a.uuid,a.runk);
+                    }
+                    deletes = new ArrayList<>();
+                }
+            }
+        }.runTaskTimer(SimpletabAdditions.plugin,100,20);
     }
 }

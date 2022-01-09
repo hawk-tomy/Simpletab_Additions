@@ -16,6 +16,7 @@ public final class SimpletabAdditions extends JavaPlugin {
         clname = getClass();
         plugin = getPlugin(this.getClass());
         EventGen.EventGeneratorRunner();
+        EventGen.run_task();
 
     }
 
