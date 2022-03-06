@@ -3,7 +3,7 @@ import org.apache.tools.ant.filters.ReplaceTokens
 apply plugin: 'java'
 
 group = 'Stories'
-version = '1.0.3'
+version = '1.0.5'
 
 sourceCompatibility = '1.8'
 targetCompatibility = '1.8'

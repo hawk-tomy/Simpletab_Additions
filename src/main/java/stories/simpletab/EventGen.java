@@ -1,10 +1,9 @@
 package stories.simpletab;
 
 import VMPlugin.API.VMSystemAPI;
-import VMPlugin.Data.PersonalData;
 import VMPlugin.Ranks.Rank;
+import VMPlugin.VMTime.VMTime;
 import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import kura.tab.communication.Connections;
 import kura.tab.libs.socket.emitter.Emitter;
 import net.luckperms.api.LuckPermsProvider;
@@ -18,9 +17,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 public class EventGen {
@@ -276,10 +273,11 @@ public class EventGen {
                         JSONObject json = new JSONObject();
                         json.put("to", Connections.getJString(object[0],"to")).put("id", Connections.getJInt(object[0],"id"));
                         //??
-                        List<PersonalData> datas = new ArrayList<>();
+                        Map<UUID, VMTime> MVP = VMSystemAPI.getAllPersonalData(Rank.MVP);
+                        Map<UUID,VMTime> VIP = VMSystemAPI.getAllPersonalData(Rank.VIP);
                         Gson gson = new Gson();
-                        for(PersonalData data : VMSystemAPI.getAllPersonalData().values())datas.add(data);
-                        json.put("data",gson.toJson(datas));
+                        json.put("mvp",gson.toJson(MVP));
+                        json.put("vip",gson.toJson(VIP));
 
                         Connections.sendJson("tabad_VM_list", json.toString());
                     } catch (JSONException e) {
